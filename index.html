@@ -3,14 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="泰宇閩南語文第 1 課 AI 書櫃">
-  <title>第 1 課 AI 書櫃｜泰宇閩南語文</title>
+  <meta name="description" content="泰宇閩南語文 AI 書櫃完整教材總庫">
+  <title>AI 書櫃完整教材總庫｜泰宇閩南語文</title>
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <div class="site-frame">
   <main id="top">
     <p class="toolbox-entry"><a href="classroom-tools.html">🛠️ 開啟課堂小工具</a></p>
+    <section class="library-scope" aria-labelledby="scope-title">
+      <p class="scope-label" id="scope-title">選擇教材範圍</p>
+      <nav class="scope-tabs" aria-label="教材範圍">
+        <button class="scope-tab is-active" type="button" data-scope="all" aria-pressed="true">全部檔案</button>
+        <button class="scope-tab" type="button" data-scope="full" aria-pressed="false">全冊檔案</button>
+        <button class="scope-tab" type="button" data-scope="1" aria-pressed="false">第 1 課</button>
+        <button class="scope-tab" type="button" data-scope="2" aria-pressed="false">第 2 課</button>
+        <button class="scope-tab" type="button" data-scope="3" aria-pressed="false">第 3 課</button>
+        <button class="scope-tab" type="button" data-scope="4" aria-pressed="false">第 4 課</button>
+        <button class="scope-tab" type="button" data-scope="5" aria-pressed="false">第 5 課</button>
+        <button class="scope-tab" type="button" data-scope="6" aria-pressed="false">第 6 課</button>
+        <button class="scope-tab" type="button" data-scope="7" aria-pressed="false">第 7 課</button>
+        <button class="scope-tab" type="button" data-scope="8" aria-pressed="false">第 8 課</button>
+      </nav>
+    </section>
     <nav class="tabs" aria-label="教材分類">
       <button class="tab is-active" type="button" data-filter="all" aria-pressed="true">全部教材</button>
       <button class="tab" type="button" data-filter="plan" aria-pressed="false">授課計畫表</button>
@@ -18,12 +33,12 @@
       <button class="tab" type="button" data-filter="slides" aria-pressed="false">教學簡報</button>
     </nav>
     <section aria-labelledby="resources-title">
-      <div class="section-title"><h2 id="resources-title">本課教材</h2><span id="resource-count">3 份教材</span></div>
+      <div class="section-title"><h2 id="resources-title">完整教材總庫</h2><span id="resource-count">載入中</span></div>
       <div class="resources" id="resources"></div>
       <p class="empty" id="empty" hidden>此分類的教材正在整理中。</p>
     </section>
   </main>
   </div>
-  <script src="assets/app-clean.js?v=2"></script>
+  <script src="assets/app-library.js?v=1"></script>
 </body>
 </html>
