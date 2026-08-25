@@ -14,15 +14,13 @@ const fullResources=[
 ];
 const unitResources=lessonInfo.flatMap(([theme,name],index)=>{
   const no=index+1,folder=`assets/lesson-files/lesson-${String(no).padStart(2,'0')}`;
-  const go=`lesson-${String(no).padStart(2,'0')}.html`;
-  const toLesson=['前往第 '+no+' 課頁',go];
   return [
-    {scope:String(no),type:'plan',icon:'plan',tag:'授課計畫表',title:`閩南語文（第${no}課）授課計畫表`,desc:name,actions:[['下載 Word',`${folder}/閩南語文（第${no}課）授課計畫表＿${name}.docx`],toLesson]},
-    {scope:String(no),type:'materials',icon:'guide',tag:'教師教材',title:`授課指引＿第${no}課`,desc:name,actions:[['下載 PDF',`${folder}/授課指引＿第${no}課＿${name}.pdf`],toLesson]},
-    {scope:String(no),type:'materials',icon:'activity',tag:'課堂活動本',title:`課堂活動本＿第${no}課`,desc:name,actions:[['下載 PDF',`${folder}/課堂活動本＿第${no}課＿${name}.pdf`],toLesson]},
-    {scope:String(no),type:'materials',icon:'ebook',tag:'電子書',title:`電子書＿第${no}課`,desc:theme,actions:[['下載電子書 PDF',`${folder}/電子書＿第${no}課＿${name}.pdf`],toLesson]},
-    {scope:String(no),type:'materials',icon:'test',tag:'測驗卷',title:`測驗卷＿第${no}課`,desc:'本課教師用測驗卷 PDF。',actions:[['下載 PDF',`${folder}/測驗卷＿第${no}課＿${name}.pdf`],toLesson]},
-    {scope:String(no),type:'slides',icon:'slides',tag:'教學簡報',title:`教學簡報＿第${no}課`,desc:name,actions:[['下載簡報',download(slides[index])],toLesson]}
+    {scope:String(no),type:'plan',icon:'plan',tag:'授課計畫表',title:`閩南語文（第${no}課）授課計畫表`,desc:name,actions:[['下載 Word',`${folder}/閩南語文（第${no}課）授課計畫表＿${name}.docx`]]},
+    {scope:String(no),type:'materials',icon:'guide',tag:'教師教材',title:`授課指引＿第${no}課`,desc:name,actions:[['下載 PDF',`${folder}/授課指引＿第${no}課＿${name}.pdf`]]},
+    {scope:String(no),type:'materials',icon:'activity',tag:'課堂活動本',title:`課堂活動本＿第${no}課`,desc:name,actions:[['下載 PDF',`${folder}/課堂活動本＿第${no}課＿${name}.pdf`]]},
+    {scope:String(no),type:'materials',icon:'ebook',tag:'電子書',title:`電子書＿第${no}課`,desc:theme,actions:[['下載電子書 PDF',`${folder}/電子書＿第${no}課＿${name}.pdf`]]},
+    {scope:String(no),type:'materials',icon:'test',tag:'測驗卷',title:`測驗卷＿第${no}課`,desc:'本課教師用測驗卷 PDF。',actions:[['下載 PDF',`${folder}/測驗卷＿第${no}課＿${name}.pdf`]]},
+    {scope:String(no),type:'slides',icon:'slides',tag:'教學簡報',title:`教學簡報＿第${no}課`,desc:name,actions:[['下載簡報',download(slides[index])]]}
   ];
 });
 const resources=[...fullResources,...unitResources];
