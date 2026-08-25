@@ -8,7 +8,7 @@
   </style>
 </head>
 <body><div class="site">
-  <header class="top"><div class="brand"><span class="logo">T</span><span>泰宇閩南語文<br>課堂小工具</span></div><a class="back" href="index.html">← 回到 AI 書櫃</a></header>
+  <header class="top"><div class="brand"><span class="logo">T</span><span>泰宇閩南語文<br>課堂小工具</span></div><a class="back" href="index.html" onclick="if(history.length>1){history.back();return false;}">← 回上一頁</a></header>
   <section class="hero"><p class="eyebrow">CLASSROOM TOOLS</p><h1>課堂進行中，<br><span>一按就能用。</span></h1><p>把班級經營、台語教學、評量與親師溝通集中在同一頁。名單與紀錄只暫存在這台電腦的瀏覽器。</p><div class="toolbar"><input id="search" class="search" type="search" placeholder="搜尋工具，例如：抽籤、口說、計時、評量"><div class="filters"><button class="active" data-filter="all">全部</button><button data-filter="class">班級互動</button><button data-filter="taigi">台語教學</button><button data-filter="assess">評量作業</button><button data-filter="comm">親師行政</button></div></div></section>
   <main>
     <section class="section" data-section="class"><div class="section-head"><h2>🎒 班級經營與互動</h2><p>上課當下就會用到，開了可直接投影</p></div><div class="grid">
@@ -104,5 +104,4 @@
     document.querySelectorAll('[data-tool]').forEach(x=>x.onclick=()=>open(x.dataset.tool));$('.close').onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});let filter='all';const cards=[...document.querySelectorAll('.card')];function filterCards(){const q=$('#search').value.toLowerCase().trim();let c=0;cards.forEach(x=>{const ok=(filter==='all'||x.dataset.cat===filter)&&x.innerText.toLowerCase().includes(q);x.classList.toggle('hide',!ok);if(ok)c++});$('#empty').classList.toggle('show',!c)}document.querySelectorAll('[data-filter]').forEach(x=>x.onclick=()=>{filter=x.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===x));filterCards()});$('#search').oninput=filterCards;
   </script>
 </body></html>
-
 
