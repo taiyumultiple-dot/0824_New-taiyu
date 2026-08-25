@@ -5,7 +5,7 @@ document.head.insertAdjacentHTML('beforeend','<style>.lesson-header{min-height:1
 const shared=[
   ['plan','文','授課計畫表',`閩南語文（第${no}課）授課計畫表`,lessons[i][1],[['下載 Word',`${local}/閩南語文（第${no}課）授課計畫表＿${lessons[i][1]}.docx`]]],
   ['materials','指','教師教材',`第 ${no} 課授課指引`,lessons[i][1],[['下載 PDF',`${local}/授課指引＿第${no}課＿${lessons[i][1]}.pdf`]]],
-  ['materials','活','課堂活動本',`第 ${no} 課課堂活動本`,'本課活動本 PDF 與 Word。',[['下載 PDF',`${local}/課堂活動本＿第${no}課＿${lessons[i][1]}.pdf`],['下載 Word',`${local}/課堂活動本＿第${no}課＿${lessons[i][1]}.docx`]]],
+  ['materials','活','課堂活動本',`第 ${no} 課課堂活動本`,'本課活動本 PDF。',[['下載 PDF',`${local}/課堂活動本＿第${no}課＿${lessons[i][1]}.pdf`]]],
   ['materials','測','測驗卷',`第 ${no} 課測驗卷`,'本課教師用測驗卷 PDF 與 Word。',[['下載 PDF',`${local}/測驗卷＿第${no}課＿${lessons[i][1]}.pdf`],['下載 Word',`${local}/測驗卷＿第${no}課＿${lessons[i][1]}.docx`]]]
 ];
 const resources=[...shared.slice(0,3),['materials','冊','電子書',`第 ${no} 課電子書`,lessons[i][0],[['下載電子書 PDF',`${local}/電子書＿第${no}課＿${lessons[i][1]}.pdf`]]],...shared.slice(3),['slides','簡','教學簡報',`第 ${no} 課教學簡報`,lessons[i][1],[['下載簡報',D(slides[i])]]]];
