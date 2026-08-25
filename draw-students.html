@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>抽籤點名｜泰宇閩南語文</title>
+  <style>
+    :root{--ink:#1b1b1b;--paper:#fffdf6;--cream:#fff7dd;--yellow:#ffdb28;--teal:#008c87;--line:#202020;--muted:#69645d}*{box-sizing:border-box}body{margin:0;background:#4a4a4a;color:var(--ink);font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif}.site{width:min(980px,calc(100% - 40px));min-height:calc(100vh - 52px);margin:26px auto;border:4px solid var(--line);border-radius:30px;background:var(--paper);box-shadow:14px 14px 0 var(--yellow);overflow:hidden}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 34px;border-bottom:4px solid var(--line);background:#fff}.brand{display:flex;align-items:center;gap:12px;font-size:26px;font-weight:900}.icon{display:grid;place-items:center;width:48px;height:48px;border:2px solid var(--line);border-radius:14px;background:#e0f0ed;font-size:28px}.back{color:var(--ink);font-weight:900}.hero{padding:34px 52px;background:linear-gradient(115deg,#fff9e8,#fff0b9);border-bottom:3px solid var(--line)}.eyebrow{margin:0 0 7px;color:var(--teal);font-weight:900;letter-spacing:.1em}.hero h1{margin:0;font-size:clamp(36px,6vw,56px);line-height:1.08}.hero p{max-width:690px;margin:14px 0 0;font-size:17px;font-weight:700;line-height:1.7}main{padding:34px 52px 54px}.field-label{display:block;margin:0 0 8px;font-weight:900;font-size:19px}textarea{width:100%;min-height:150px;padding:14px;border:3px solid var(--line);border-radius:14px;background:#fff;font:700 19px/1.6 inherit;resize:vertical}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}button{padding:12px 18px;border:2px solid var(--line);border-radius:11px;background:var(--teal);color:#fff;font:900 18px inherit;cursor:pointer}button.alt{background:#fff;color:var(--ink)}.result{margin-top:22px;min-height:106px;padding:20px;border:3px solid var(--line);border-radius:15px;background:#fff4c5;font-size:21px;font-weight:900;line-height:1.65;white-space:pre-line}.history{margin-top:22px;padding:20px;border:2px dashed var(--line);border-radius:15px;background:#fff}.history h2{margin:0 0 10px;font-size:22px}.history p{margin:0;color:var(--muted);font-weight:700;white-space:pre-line}.note{margin-top:14px;color:var(--muted);font-size:14px;font-weight:700}@media(max-width:680px){.site{width:100%;min-height:100vh;margin:0;border:0;border-radius:0;box-shadow:none}.top{padding:18px 22px}.brand{font-size:22px}.hero,main{padding-left:22px;padding-right:22px}.hero{padding-top:30px;padding-bottom:30px}.actions button{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header class="top"><div class="brand"><span class="icon">🎲</span>抽籤點名</div><a class="back" id="back-link" href="classroom-tools.html">← 回上一頁</a></header>
+    <section class="hero"><p class="eyebrow">CLASSROOM TOOL</p><h1>抽籤點名</h1><p>一行一個名字。名單與抽籤紀錄只儲存在這台電腦，本輪不會重複抽到同一位同學。</p></section>
+    <main>
+      <label class="field-label" for="roster">班級名單</label><textarea id="roster" placeholder="王小明&#10;陳美玲&#10;林志豪"></textarea>
+      <div class="actions"><button id="random">隨機抽一位</button><button class="alt" id="next">依序抽下一位</button><button class="alt" id="reset">重設本輪</button><button class="alt" id="save">儲存名單</button></div>
+      <div class="result" id="result">請先輸入名單。</div>
+      <section class="history"><h2>本輪抽籤紀錄</h2><p id="history">尚未抽籤。</p><div class="actions"><button class="alt" id="copy">複製紀錄</button><button id="word">下載 Word</button></div></section>
+      <p class="note">提醒：名單不會上傳，會儲存在此瀏覽器的本機資料中。</p>
+    </main>
+  </div>
+  <script>
+    const $=s=>document.querySelector(s),roster=$('#roster'),result=$('#result'),history=$('#history');let drawn=[];
+    const from=new URLSearchParams(location.search).get('from');if(from&&/^(index|lesson-0[1-8]|classroom-tools)\.html$/.test(from))$('#back-link').href=from;
+    const names=()=>roster.value.split(/\n|,/).map(x=>x.trim()).filter(Boolean);
+    const render=()=>history.textContent=drawn.length?drawn.map((name,index)=>`${index+1}. ${name}`).join('\n'):'尚未抽籤。';
+    roster.value=localStorage.getItem('taigi-roster')||'';render();
+    function pick(ordered){localStorage.setItem('taigi-roster',roster.value);const list=names(),remaining=list.filter(name=>!drawn.includes(name));if(!list.length){result.textContent='請先輸入名單。';return}if(!remaining.length){result.textContent=`本輪已抽完 ${list.length} 位同學，請按「重設本輪」後再開始。`;return}const name=ordered?remaining[0]:remaining[Math.floor(Math.random()*remaining.length)];drawn.push(name);result.textContent=`本輪第 ${drawn.length} 位：${name}\n尚餘 ${remaining.length-1} 位。`;render()}
+    $('#random').onclick=()=>pick(false);$('#next').onclick=()=>pick(true);$('#save').onclick=()=>{localStorage.setItem('taigi-roster',roster.value);result.textContent='班級名單已儲存。'};$('#reset').onclick=()=>{drawn=[];result.textContent='本輪抽籤紀錄已重設。';render()};
+    $('#copy').onclick=async()=>{const text=`抽籤點名紀錄\n\n${history.textContent}`;try{await navigator.clipboard.writeText(text);$('#copy').textContent='已複製 ✓'}catch{$('#copy').textContent='請手動複製'}};
+    $('#word').onclick=()=>{const safe=(`抽籤點名紀錄\n\n${history.textContent}`).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');const blob=new Blob([`<html><head><meta charset="utf-8"></head><body style="font-family:Microsoft JhengHei,Arial;line-height:1.8"><h1>抽籤點名紀錄</h1><p>${safe}</p></body></html>`],{type:'application/msword'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='抽籤點名紀錄.doc';document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url)};
+  </script>
+</body>
+</html>
